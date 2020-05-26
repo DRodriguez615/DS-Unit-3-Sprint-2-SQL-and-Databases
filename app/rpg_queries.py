@@ -82,6 +82,7 @@ FROM charactercreator_character c
 LEFT JOIN charactercreator_character_inventory inv ON c.character_id = inv.character_id
 LEFT JOIN armory_item ai ON ai.item_id = inv.item_id
 GROUP BY c.character_id 
+LIMIT 20;
 """
 
 # How many weapons does each character have?
@@ -94,6 +95,7 @@ FROM charactercreator_character c
 LEFT JOIN charactercreator_character_inventory inv ON c.character_id = inv.character_id
 LEFT JOIN armory_weapon w ON w.item_ptr_id = inv.item_id
 GROUP BY c.character_id 
+LIMIT 20;
 """
 
 #
