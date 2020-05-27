@@ -1,5 +1,5 @@
 
-# app/titanic_queries.py
+# app/test_titanic.py
 
 import json
 import os
@@ -31,6 +31,8 @@ print("CURSOR", type(cursor))
 
 print("------------------")
 query = f"""
+DROP TABLE test_titanic;
+
 CREATE TABLE IF NOT EXISTS test_titanic (
     Survived INT,
     Pclass INT,
@@ -62,15 +64,3 @@ connection.close()
 
 
 
-
-
-
-
-
-#cursor.execute('SELECT * from test_table;')
-#result = cursor.fetchall()
-#for row in result:
-    #breakpoint()
-    #print("------")
-    #print(type(row))
-    #print(row)
