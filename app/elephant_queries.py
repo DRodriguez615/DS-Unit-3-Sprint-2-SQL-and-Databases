@@ -36,7 +36,6 @@ for row in result:
 
 
 
-
 print("------------------")
 query = f"""
 CREATE TABLE IF NOT EXISTS test_table2 (
