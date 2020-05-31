@@ -1,7 +1,10 @@
 
+# app/rpg_assign_2.py
+
 import json
 import os
 import pandas as pd
+#import sqlite3
 import psycopg2
 from psycopg2.extras import DictCursor, execute_values
 from dotenv import load_dotenv
@@ -23,22 +26,25 @@ print("CONNECTION", type(connection))
 cursor = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 print("CURSOR", type(cursor))
 
+print("------------------")
+query = f"""
 
-cursor.execute('DROP TABLE IF EXISTS rpg_db.sqlite3;')
-query_new = """
-CREATE TABLE RPG_DB (
-    
-)
-
-
-
-
+CREATE TABLE IF NOT EXISTS rpg_db (
+    item_id SERIAL PRIMARY KEY,
+    name varchar(30),
+    value INT,
+    weight INT
+);
 """
+print("SQL:", query)
+cursor.execute(query)
 
+execute_values(cursor, """
+    INSERT INTO rpg_db
+    (item_id, name, value, weight)
+    VALUES %s;
+""", [tuple(row) for row in DB_FILEPATH.armory_item.values])
 
-result = cursor.fetchall()
-for row in result:
-    #breakpoint()
-    print("------")
-    print(type(row))
-    print(row)
+connection.commit()
+cursor.close()
+connection.close()
