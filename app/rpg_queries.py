@@ -53,6 +53,7 @@ LEFT JOIN charactercreator_mage mage ON mage.character_ptr_id = mage.character_p
 LEFT JOIN charactercreator_thief thief ON thief.character_ptr_id = thief.character_ptr_id
 """
 
+
 # How many total items?
 query3 = """
 SELECT
@@ -98,17 +99,23 @@ GROUP BY c.character_id
 LIMIT 20;
 """
 
-#
-query4 = """
 
-"""
 
 result = cursor.execute(query)
 print("RESULT", dict(result)) #> returns cursor object w/o results (need to fetch the results)
 
-result2 = cursor.execute(query).fetchall()
+result2 = cursor.execute(query2).fetchall()
 print("RESULT 2", dict(result2))
 
-result3 = cursor.execute(query2).fetchall()
+result3 = cursor.execute(query3).fetchall()
 print("RESULT 3", dict(result3))
+
+result4 = cursor.execute(query4).fetchall()
+print("RESULT 4", dict(result4))
+
+result5 = cursor.execute(query5).fetchall()
+print("RESULT 5", dict(result5))
+
+result6 = cursor.execute(query6).fetchall()
+print("RESULT 6", dict(result6))
 

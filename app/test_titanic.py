@@ -57,6 +57,70 @@ connection.commit()
 cursor.close()
 connection.close()
 
+#How many passengers survived, and how many died?
+query2 = """
+SELECT 
+	t.survived
+	,count(t.survived)
+FROM 
+	test_titanic t
+GROUP BY 1
+"""
+
+
+#How many passengers were in each class?
+query3 = """
+SELECT 
+	t.pclass
+	,count(t.pclass)
+FROM 
+	test_titanic t
+GROUP BY 1
+"""
+
+#How many passengers survived/died within each class?
+query4 = """
+SELECT 
+	t.survived
+	,t.pclass
+	,count(t.survived)
+FROM 
+	test_titanic t
+GROUP BY t.survived, t.pclass
+"""
+
+#What was the average age of survivors vs nonsurvivors?
+#What was the average age of each passenger class?
+#What was the average fare by passenger class? By survival?
+#How many siblings/spouses aboard on average, by passenger class? By survival?
+#How many parents/children aboard on average, by passenger class? By survival?
+
+#Do any passengers have the same name?
+query10 = """
+SELECT 
+	t.name
+	,count(distinct t.name)
+FROM 
+	test_titanic t
+GROUP BY 1
+"""
+result1 = cursor.execute(query2).fetchall()
+print("RESULT 1", dict(result1))
+
+result2 = cursor.execute(query3).fetchall()
+print("RESULT 2", dict(result2))
+
+result3 = cursor.execute(query4).fetchall()
+print("RESULT 3", dict(result3))
+
+result4 = cursor.execute(query5).fetchall()
+print("RESULT 4", dict(result4))
+
+result5 = cursor.execute(query6).fetchall()
+print("RESULT 5", dict(result5))
+
+
+
 
 
 
