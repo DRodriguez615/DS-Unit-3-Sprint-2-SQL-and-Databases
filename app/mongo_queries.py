@@ -1,3 +1,4 @@
+
 # app/mongo_queries.py
 
 import pymongo
